@@ -18,11 +18,12 @@
     }
   },
   "scripts": {
-    "dist": "rm -rf dist && rollup -c && tsc",
+    "dist": "rimraf ./dist/* && rollup -c rollup.config.mjs",
     "test": "LOG=y-redis node ./tests/index.js",
     "debug": "LOG=y-redis node --unhandled-rejections=strict --inspect-brk ./tests/index.js",
     "lint": "standard && tsc",
-    "preversion": "npm run lint && npm test && npm run dist"
+    "preversion": "npm run lint && npm test && npm run dist",
+    "prepare": "husky"
   },
   "files": [
     "dist/*",
@@ -50,9 +51,17 @@
   },
   "homepage": "https://yjs.dev",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-typescript": "^12.1.2",
     "@types/ioredis": "^4.26.6",
-    "rollup": "^1.32.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.4.2",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.32.0",
     "standard": "^10.0.3",
+    "tslib": "^2.8.1",
     "typescript": "^3.9.10",
     "yjs": "^13.5.11"
   },
