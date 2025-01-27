@@ -2,8 +2,7 @@
   "name": "y-redis",
   "version": "1.0.3",
   "description": "Redis persistence adapter for Yjs",
-  "main": "./src/y-redis.js",
-  "types": "./dist/src/y-redis.d.ts",
+  "types": "./dist/y-redis.d.ts",
   "type": "module",
   "sideEffects": "false",
   "funding": {
@@ -13,12 +12,12 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": "./src/y-redis.js",
+      "import": "./dist/y-redis.mjs",
       "require": "./dist/y-redis.cjs"
     }
   },
   "scripts": {
-    "dist": "rimraf ./dist/* && rollup -c rollup.config.mjs",
+    "dist": "shx rm -rf dist && rollup -c rollup.config.mjs && shx mv dist/src/*.d.ts dist && shx rm -rf dist/src",
     "test": "LOG=y-redis node ./tests/index.js",
     "debug": "LOG=y-redis node --unhandled-rejections=strict --inspect-brk ./tests/index.js",
     "lint": "standard && tsc",
@@ -58,8 +57,8 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "prettier": "^3.4.2",
-    "rimraf": "^6.0.1",
     "rollup": "^4.32.0",
+    "shx": "^0.3.4",
     "standard": "^10.0.3",
     "tslib": "^2.8.1",
     "typescript": "^3.9.10",

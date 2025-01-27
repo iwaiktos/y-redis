@@ -4,7 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 
 export default defineConfig({
-  input: './src/y-redis.js',
+  input: './src/y-redis.ts',
   output: [
     {
       file: './dist/y-redis.mjs',
